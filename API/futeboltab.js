@@ -36,7 +36,7 @@ export async function editarJogo(id, editarJogo){
           nr_assists = ?,
           jg_posicao = ?,
           dt_estreia = ?,
-          cp_mundo = ?,
+          cp_mundo = ?
     where id = ?
   `
   const [info] = await conection.query(comando, [

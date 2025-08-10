@@ -25,16 +25,16 @@ export async function inserirViagem(novaViagem){
 
 export async function editarViagem(id, editarViagem){
     const comando = `
-        update from tb_viage
+        update tb_viage
             set lc_lugar = ?,
                 ts_transporte = ?,
                 tm_tempo = ?,
                 ms_moeda = ?,
-                hg_hospedagem = ?,
-        where id = ?,
+                hg_hospedagem = ?
+        where id = ?
     `
 
-    const [info] = await conection.query(comando[
+    const [info] = await conection.query(comando, [
         editarViagem.lc_lugar,
         editarViagem.ts_transporte,
         editarViagem.tm_tempo,

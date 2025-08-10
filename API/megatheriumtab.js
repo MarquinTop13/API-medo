@@ -23,15 +23,15 @@ export async function inserirMegatherium(novoMegatherium){
 
 export async function editarMegatherium(id, editarMegatherium){
     const comando = `
-    update from tb_megatherium 
+    update tb_megatherium 
         set titulo = ?,
             descricao = ?,
             carga_horas = ?,
-            duracao = ?,
+            duracao = ?
         where id = ?
     `
 
-    const [info] = await conection.query(comando[
+    const [info] = await conection.query(comando, [
         editarMegatherium.titulo,
         editarMegatherium.descricao,
         editarMegatherium.carga_horas,

@@ -32,10 +32,10 @@ export async function editarPaciente(id, editarPaciente){
           id_virus = ?,
           id_sex = ?,
           nm_quarto = ?,
-          id_obito = ?,
+          id_obito = ?
        where id = ?
   ` 
-  const [info] = await conection.query(comando[
+  const [info] = await conection.query(comando, [
     editarPaciente.ds_nome,
     editarPaciente.dt_nasc,
     editarPaciente.id_virus,
@@ -49,7 +49,7 @@ export async function editarPaciente(id, editarPaciente){
 
 export async function removerPaciente(id){
   const comando = `
-    delete from tb_glyptodon
+    delete from tb_hosp
     where id = ?
   `
 

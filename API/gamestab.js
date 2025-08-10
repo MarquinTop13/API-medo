@@ -29,7 +29,7 @@ export async function editarGame(id, editarGame){
           ds_desenvolvedora = ?,
           qtd_downloads = ?,
           vl_preco = ?,
-          nr_ano = ?,
+          nr_ano = ?
     where id = ?
   `
   const [info] = await conection.query(comando, [

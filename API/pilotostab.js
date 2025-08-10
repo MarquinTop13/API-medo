@@ -30,11 +30,11 @@ export async function editarPiloto(id, editarPiloto) {
                 dt_primeiro_titulo = ?,
                 md_ganhos = ?,
                 nc_nacionalidade = ?,
-                eq_primeiro_titulo = ?,
+                eq_primeiro_titulo = ?
         where id = ?
     `
 
-    const [info] = await conection.query(comando[
+    const [info] = await conection.query(comando, [
         editarPiloto.nm_piloto,
         editarPiloto.cr_primeiro_titulo,
         editarPiloto.dt_primeiro_titulo,

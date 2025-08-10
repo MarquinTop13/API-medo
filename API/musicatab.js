@@ -26,18 +26,18 @@ export async function inserirMusica(novaMusica){
 
 export async function editarMusica(id, editarMusica){
     const comando = `
-        update from tb_musicas
+        update tb_musicas
         set titulo = ?,
             artista = ?,
             album = ?,
             genero = ?,
             duracao = ?,
             ano_lancamento = ?,
-            classificacao = ?,
+            classificacao = ?
         where id = ?
     `
 
-    const [info] = await conection.query(comando[
+    const [info] = await conection.query(comando, [
         editarMusica.titulo,
         editarMusica.artista,
         editarMusica.album,

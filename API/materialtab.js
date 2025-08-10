@@ -30,25 +30,24 @@ export async function inserirMaterial(novoMaterial) {
 
 export async function editarMaterial(id, editarMaterial){
   const comando = `
-    update from tb_materiais
+    update tb_materiais
       set comprador = ?,
-          Qtd_canetas,
-          Qtd_lapis,
-          lapis_cor,
-          borrachas,
-          cadernos,
-          tesouras,
-          colas,
-          tt_itens_comprados,
-          tt_itens_preco,
+          Qtd_canetas = ?,
+          Qtd_lapis = ?,
+          lapis_cor = ?,
+          borrachas = ?,
+          cadernos = ?,
+          tesouras = ?,
+          colas = ?,
+          tt_itens_comprados = ?,
+          tt_itens_preco = ?
       where id = ?
-  `
-  const [info] = await conection.query(comando[
+`
+  const [info] = await conection.query(comando, [
       editarMaterial.comprador,
       editarMaterial.Qtd_canetas,
       editarMaterial.Qtd_lapis,
       editarMaterial.lapis_cor,
-      editarMaterial.borrachas,
       editarMaterial.borrachas,
       editarMaterial.cadernos,
       editarMaterial.tesouras,
@@ -57,6 +56,7 @@ export async function editarMaterial(id, editarMaterial){
       editarMaterial.tt_itens_preco,
       id
   ])
+
 }
 
 export async function removerMaterial(id){

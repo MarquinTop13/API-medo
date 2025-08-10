@@ -28,11 +28,11 @@ export async function editarGlyptodon(id, editarGlyptodon) {
         set nome = ?,
             matricula = ?,
             curso = ?,
-            email = ?,
+            email = ?
         where id = ?
     `
 
-    const [info] = await conection.query(comando [
+    const [info] = await conection.query(comando, [
       editarGlyptodon.nome,
       editarGlyptodon.matricula,
       editarGlyptodon.curso,
@@ -41,10 +41,10 @@ export async function editarGlyptodon(id, editarGlyptodon) {
     ])
 }
 
-export async function removerGlyptodo(id) {
+export async function removerGlyptodon(id) {
     const comando = `
       delete from tb_glyptodon
-      where id = ?,
+      where id = ?
     `  
 
     const [info] = await conection.query(comando, [id])
