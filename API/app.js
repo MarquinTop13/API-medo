@@ -210,7 +210,7 @@ api.put('/tabela/editarglyptodon/:id', async (req,resp) => {
 
 api.delete('/tabela/removerglyptodon/:id', async (req,resp) => {
     let id = Number(req.params.id);
-    await glyptodon.removerGlyptodo(id);
+    await glyptodon.removerGlyptodon(id);
     resp.send();
 })
 
@@ -226,14 +226,14 @@ api.post('/tabela/novomegatherium', async (req,resp) => {
     resp.send({NovoId: id});
 })
 
-api.put('/tabela/editarmegatherium', async (req,resp) => {
+api.put('/tabela/editarmegatherium/:id', async (req,resp) => {
     let id = Number(req.params.id);
     let NovosDados = req.body;
     await megatherium.editarMegatherium(id, NovosDados);
     resp.send();
 })
 
-api.delete('/tabela/removermegatherium', async (req,resp) => {
+api.delete('/tabela/removermegatherium/:id', async (req,resp) => {
     let id = Number(req.params.id);
     await megatherium.removerMegatherium(id);
     resp.send();
