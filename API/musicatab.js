@@ -22,3 +22,40 @@ export async function inserirMusica(novaMusica){
 
     return info.insertId;
 }
+
+
+export async function editarMusica(id, editarMusica){
+    const comando = `
+        update from tb_musicas
+        set titulo = ?,
+            artista = ?,
+            album = ?,
+            genero = ?,
+            duracao = ?,
+            ano_lancamento = ?,
+            classificacao = ?,
+        where id = ?
+    `
+
+    const [info] = await conection.query(comando[
+        editarMusica.titulo,
+        editarMusica.artista,
+        editarMusica.album,
+        editarMusica.genero,
+        editarMusica.duracao,
+        editarMusica.ano_lancamento,
+        editarMusica.classificacao,
+        id
+    ])
+}
+
+
+
+export async function removerMusica(id) {
+    const comando = `
+        delete from tb_musicas
+        where id = ?;
+    `    
+
+    const [info] = await conection.query(comando, [id]);
+}

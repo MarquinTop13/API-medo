@@ -20,3 +20,36 @@ export async function inserirViagem(novaViagem){
 
     return info.insertId;
 }
+
+
+
+export async function editarViagem(id, editarViagem){
+    const comando = `
+        update from tb_viage
+            set lc_lugar = ?,
+                ts_transporte = ?,
+                tm_tempo = ?,
+                ms_moeda = ?,
+                hg_hospedagem = ?,
+        where id = ?,
+    `
+
+    const [info] = await conection.query(comando[
+        editarViagem.lc_lugar,
+        editarViagem.ts_transporte,
+        editarViagem.tm_tempo,
+        editarViagem.ms_moeda,
+        editarViagem.hg_hospedagem,
+        id
+    ])
+}
+
+
+export async function removerViagem(id){
+    const comando = `
+        delete from tb_viage
+        where id = ?;
+    `
+    
+    const [info] = await conection.query(comando, [id])
+}

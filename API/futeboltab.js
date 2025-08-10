@@ -25,3 +25,39 @@ export async function inserirJogo(novoJogo) {
   ])
   return info.insertId;
 }
+
+export async function editarJogo(id, editarJogo){
+  const comando = `
+    update tb_Futebol
+      set nm_jogador = ?,
+          ps_nascimento = ?,
+          nm_time = ?,
+          nrs_gols = ?,
+          nr_assists = ?,
+          jg_posicao = ?,
+          dt_estreia = ?,
+          cp_mundo = ?,
+    where id = ?
+  `
+  const [info] = await conection.query(comando, [
+      editarJogo.nm_jogador,
+      editarJogo.ps_nascimento,
+      editarJogo.nm_time,
+      editarJogo.nrs_gols,
+      editarJogo.nr_assists,
+      editarJogo.jg_posicao,
+      editarJogo.dt_estreia,
+      editarJogo.cp_mundo,
+      id
+  ])
+}
+
+
+export async function removerJogo(id){
+  const comando = `
+    delete from tb_Futebol
+    where id = ?
+  `
+
+  const [info] = await conection.query(comando, [id]);
+}

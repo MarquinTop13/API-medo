@@ -20,3 +20,32 @@ export async function inserirGlyptodon(novoGlyptodon) {
   ])
   return info.insertId;
 }
+
+
+export async function editarGlyptodon(id, editarGlyptodon) {
+    const comando = `
+      update tb_glyptodon
+        set nome = ?,
+            matricula = ?,
+            curso = ?,
+            email = ?,
+        where id = ?
+    `
+
+    const [info] = await conection.query(comando [
+      editarGlyptodon.nome,
+      editarGlyptodon.matricula,
+      editarGlyptodon.curso,
+      editarGlyptodon.email,
+      id
+    ])
+}
+
+export async function removerGlyptodo(id) {
+    const comando = `
+      delete from tb_glyptodon
+      where id = ?,
+    `  
+
+    const [info] = await conection.query(comando, [id])
+}

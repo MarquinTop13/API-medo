@@ -26,3 +26,44 @@ export async function inserirMaterial(novoMaterial) {
   ])
   return info.insertId;
 }
+
+
+export async function editarMaterial(id, editarMaterial){
+  const comando = `
+    update from tb_materiais
+      set comprador = ?,
+          Qtd_canetas,
+          Qtd_lapis,
+          lapis_cor,
+          borrachas,
+          cadernos,
+          tesouras,
+          colas,
+          tt_itens_comprados,
+          tt_itens_preco,
+      where id = ?
+  `
+  const [info] = await conection.query(comando[
+      editarMaterial.comprador,
+      editarMaterial.Qtd_canetas,
+      editarMaterial.Qtd_lapis,
+      editarMaterial.lapis_cor,
+      editarMaterial.borrachas,
+      editarMaterial.borrachas,
+      editarMaterial.cadernos,
+      editarMaterial.tesouras,
+      editarMaterial.colas,
+      editarMaterial.tt_itens_comprados,
+      editarMaterial.tt_itens_preco,
+      id
+  ])
+}
+
+export async function removerMaterial(id){
+  const comando = `
+      delete from tb_materiais
+      where id = ?
+  `
+
+  const [info] = await conection.query(comando, [id]);
+}

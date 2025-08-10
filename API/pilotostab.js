@@ -21,3 +21,34 @@ export async function inserirPiloto(novoPiloto){
 
     return info.insertId;
 }
+
+export async function editarPiloto(id, editarPiloto) {
+    const comando = `
+        update tb_pilotoF1
+            set nm_piloto = ?,
+                cr_primeiro_titulo = ?,
+                dt_primeiro_titulo = ?,
+                md_ganhos = ?,
+                nc_nacionalidade = ?,
+                eq_primeiro_titulo = ?,
+        where id = ?
+    `
+
+    const [info] = await conection.query(comando[
+        editarPiloto.nm_piloto,
+        editarPiloto.cr_primeiro_titulo,
+        editarPiloto.dt_primeiro_titulo,
+        editarPiloto.md_ganhos,
+        editarPiloto.nc_nacionalidade,
+        editarPiloto.eq_primeiro_titulo,
+        id
+    ])
+}
+
+export async function removerPiloto(id){
+    const comando = `
+        delete from tb_pilotoF1
+        where id = ?;
+    `
+    const [info] = await conection.query(comando, [id]);
+}

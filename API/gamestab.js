@@ -22,3 +22,32 @@ export async function inserirGame(novoGame) {
   return info.insertId;
 }
 
+export async function editarGame(id, editarGame){
+  const comando = `
+    update tb_game
+      set ds_nome = ?,
+          ds_desenvolvedora = ?,
+          qtd_downloads = ?,
+          vl_preco = ?,
+          nr_ano = ?,
+    where id = ?
+  `
+  const [info] = await conection.query(comando, [
+      editarGame.ds_nome,
+      editarGame.ds_desenvolvedora,
+      editarGame.qtd_dowloads,
+      editarGame.vl_preco,
+      editarGame.nr_ano,
+      id
+  ])
+}
+
+
+export async function removerGame(id){
+  const comando = `
+    delete from tb_game
+    where id = ?
+  `
+
+  const [info] = await conection.query(comando, [id]);
+}

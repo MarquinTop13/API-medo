@@ -22,3 +22,36 @@ export async function inserirPaciente(novoPaciente) {
   ])
   return info.insertId;
 }
+
+
+export async function editarPaciente(id, editarPaciente){
+  const comando = `
+    update tb_hosp
+      set ds_nome = ?,
+          dt_nasc = ?,
+          id_virus = ?,
+          id_sex = ?,
+          nm_quarto = ?,
+          id_obito = ?,
+       where id = ?
+  ` 
+  const [info] = await conection.query(comando[
+    editarPaciente.ds_nome,
+    editarPaciente.dt_nasc,
+    editarPaciente.id_virus,
+    editarPaciente.id_sex,
+    editarPaciente.nm_quarto,
+    editarPaciente.id_obito,
+    id
+  ])
+}
+
+
+export async function removerPaciente(id){
+  const comando = `
+    delete from tb_glyptodon
+    where id = ?
+  `
+
+  const [info] = await conection.query(comando, [id]);
+}

@@ -19,3 +19,32 @@ export async function inserirMegatherium(novoMegatherium){
 
     return info.insertId;
 }
+
+
+export async function editarMegatherium(id, editarMegatherium){
+    const comando = `
+    update from tb_megatherium 
+        set titulo = ?,
+            descricao = ?,
+            carga_horas = ?,
+            duracao = ?,
+        where id = ?
+    `
+
+    const [info] = await conection.query(comando[
+        editarMegatherium.titulo,
+        editarMegatherium.descricao,
+        editarMegatherium.carga_horas,
+        editarMegatherium.duracao,
+        id
+    ])
+}
+
+export async function removerMegatherium(id){
+    const comando = `
+        delete from tb_megatherium
+        where id = ?;
+    `
+
+    const [info] = await conection.query(comando, [id])
+}
